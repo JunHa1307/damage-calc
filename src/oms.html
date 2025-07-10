@@ -33,6 +33,76 @@
             document.getElementById('dark-theme-styles').disabled = true;
         }
     </script>
+    <!-- i18next 및 플러그인 CDN -->
+    <script src="https://unpkg.com/i18next@21.6.14/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.4.3/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/jquery-i18next@1.2.1/dist/umd/jquery-i18next.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        i18next
+            .use(i18nextHttpBackend)
+            .init({
+                lng: "ko", // 기본 언어
+                fallbackLng: "en",
+                debug: false,
+                backend: {
+                    loadPath: "./locales/{{lng}}/translation.json"
+                }
+            }, function(err, t) {
+                jqueryI18next.init(i18next, $, { useOptionsAttr: true });
+                $('body').localize();
+                // option 태그 강제 번역
+                $('option[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    $(this).text(i18next.t(key));
+                });
+                // 🔽 <label> 등 title 속성 번역 적용
+                $('[data-i18n-title]').each(function () {
+                    var key = $(this).data('i18n-title');
+                    var translated = i18next.t(key);
+                    if (translated) {
+                        $(this).attr('title', translated);
+                    }
+                });
+                // move-type select의 option에 data-i18n 속성 추가
+                $("select.move-type option").each(function() {
+                    var val = $(this).val();
+                    if (val) {
+                        $(this).attr('data-i18n', val.toLowerCase());
+                        $(this).text(i18next.t(val.toLowerCase()));
+                    }
+                });
+                $(".gen").last().change();
+            });
+        });
+
+        function changeLang(lang) {
+            i18next.changeLanguage(lang, () => {
+                $('body').localize();
+                // option 태그 강제 번역
+                $('option[data-i18n]').each(function() {
+                    var key = $(this).data('i18n');
+                    $(this).text(i18next.t(key));
+                });
+                // 🔽 <label> 등 title 속성 번역 적용
+                $('[data-i18n-title]').each(function () {
+                    var key = $(this).data('i18n-title');
+                    var translated = i18next.t(key);
+                    if (translated) {
+                        $(this).attr('title', translated);
+                    }
+                });
+                // move-type select의 option에 data-i18n 속성 추가
+                $("select.move-type option").each(function() {
+                    var val = $(this).val();
+                    if (val) {
+                        $(this).attr('data-i18n', val.toLowerCase());
+                        $(this).text(i18next.t(val.toLowerCase()));
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 
 <body class="dark-theme">
@@ -1682,58 +1752,6 @@
         <option value="en">English</option>
     </select>
     <script type="text/javascript" src="./js/dark-theme-toggle.js?"></script>
-     <!-- i18next 및 플러그인 CDN -->
-     <script src="https://unpkg.com/i18next@21.6.14/dist/umd/i18next.min.js"></script>
-     <script src="https://unpkg.com/i18next-http-backend@1.4.3/i18nextHttpBackend.min.js"></script>
-     <script src="https://unpkg.com/jquery-i18next@1.2.1/dist/umd/jquery-i18next.min.js"></script>
-     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            i18next
-                .use(i18nextHttpBackend)
-                .init({
-                    lng: "ko", // 기본 언어
-                    fallbackLng: "en",
-                    debug: false,
-                    backend: {
-                        loadPath: "./locales/{{lng}}/translation.json"
-                    }
-                }, function(err, t) {
-                    jqueryI18next.init(i18next, $, { useOptionsAttr: true });
-                    $('body').localize();
-                    // option 태그 강제 번역
-                    $('option[data-i18n]').each(function() {
-                        var key = $(this).data('i18n');
-                        $(this).text(i18next.t(key));
-                    });
-                    // 🔽 <label> 등 title 속성 번역 적용
-                    $('[data-i18n-title]').each(function () {
-                        var key = $(this).data('i18n-title');
-                        var translated = i18next.t(key);
-                        if (translated) {
-                            $(this).attr('title', translated);
-                        }
-                    });
-                });
-            });
-
-            function changeLang(lang) {
-            i18next.changeLanguage(lang, () => {
-                $('body').localize();
-                // option 태그 강제 번역
-                $('option[data-i18n]').each(function() {
-                    var key = $(this).data('i18n');
-                    $(this).text(i18next.t(key));
-                });
-                $('[data-i18n-title]').each(function () {
-                    var key = $(this).data('i18n-title');
-                    var translated = i18next.t(key);
-                    if (translated) {
-                        $(this).attr('title', translated);
-                    }
-                });
-            });
-        }
-     </script>
 </div>
 
 </body>

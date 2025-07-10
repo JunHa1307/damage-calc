@@ -1532,12 +1532,14 @@ function getSetOptions(sets) {
 	var setOptions = [];
 	for (var i = 0; i < pokeNames.length; i++) {
 		var pokeName = pokeNames[i];
+		var pokeNameText = i18next.t(pokeName) || pokeName;
 		setOptions.push({
 			pokemon: pokeName,
-			text: pokeName
+			text: pokeNameText
 		});
 		if ($("#randoms").prop("checked")) {
 			if (pokeName in randdex) {
+				var pokeNameText = i18next.t(pokeName);
 				if (gen >= 8) {
 					// The Gen 8 and 9 randdex contains information for multiple Random Battles formats for each Pokemon.
 					// Duraludon, for example, has data for Randoms, Doubles Randoms, and Baby Randoms.
@@ -1564,12 +1566,13 @@ function getSetOptions(sets) {
 		} else {
 			if (pokeName in setdex) {
 				var setNames = Object.keys(setdex[pokeName]);
+				var pokeNameText = i18next.t(pokeName) || pokeName;
 				for (var j = 0; j < setNames.length; j++) {
 					var setName = setNames[j];
 					setOptions.push({
 						pokemon: pokeName,
 						set: setName,
-						text: pokeName + " (" + setName + ")",
+						text: pokeNameText + " (" + setName + ")",
 						id: pokeName + " (" + setName + ")",
 						isCustom: setdex[pokeName][setName].isCustomSet,
 						nickname: setdex[pokeName][setName].nickname || ""
@@ -1579,7 +1582,7 @@ function getSetOptions(sets) {
 			setOptions.push({
 				pokemon: pokeName,
 				set: "Blank Set",
-				text: pokeName + " (Blank Set)",
+				text: pokeNameText + " (Blank Set)",
 				id: pokeName + " (Blank Set)"
 			});
 		}
@@ -1593,7 +1596,8 @@ function getSelectOptions(arr, sort, defaultOption) {
 	}
 	var r = '';
 	for (var i = 0; i < arr.length; i++) {
-		r += '<option value="' + arr[i] + '" ' + (defaultOption === i ? 'selected' : '') + '>' + arr[i] + '</option>';
+		var string = i18next.t(arr[0] == "???" || arr[0] == "Normal" ? "type_" + arr[i] : arr[i]);
+		r += '<option value="' + arr[i] + '" ' + (defaultOption === i ? 'selected' : '') + '>' + string + '</option>';
 	}
 	return r;
 }
@@ -1719,9 +1723,9 @@ function loadDefaultLists() {
 	$(".set-selector").select2({
 		formatResult: function (object) {
 			if ($("#randoms").prop("checked")) {
-				return object.pokemon;
+				return i18next.t(object.text);
 			} else {
-				return object.set ? ("&nbsp;&nbsp;&nbsp;" + object.set) : ("<b>" + object.text + "</b>");
+				return object.set ? ("&nbsp;&nbsp;&nbsp;" + object.set) : ("<b>" + i18next.t(object.text) + "</b>");
 			}
 		},
 		query: function (query) {
@@ -1730,7 +1734,7 @@ function loadDefaultLists() {
 			var options = getSetOptions();
 			for (var i = 0; i < options.length; i++) {
 				var option = options[i];
-				var pokeName = option.pokemon.toUpperCase();
+				var pokeName = option.text.toUpperCase();
 				if (!query.term || query.term.toUpperCase().split(" ").every(function (term) {
 					return pokeName.indexOf(term) === 0 || pokeName.indexOf("-" + term) >= 0 || pokeName.indexOf(" " + term) >= 0;
 				})) {
