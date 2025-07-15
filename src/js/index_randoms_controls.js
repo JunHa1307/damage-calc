@@ -97,16 +97,60 @@ function performCalculations() {
 	}
 	bestResult.prop("checked", true);
 	bestResult.change();
-	$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
-	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
+	$("#resultHeaderL").text(i18next.t(p1.name) + "의 기술 (선택하시면 결과를 계산합니다)");
+	$("#resultHeaderR").text(i18next.t(p2.name) + "의 기술 (선택하시면 결과를 계산합니다)");
 }
 
 $(".result-move").change(function () {
 	if (damageResults) {
+		// 1) i18next 서비스에서 리소스 스토어에 직접 접근
+		//    v19+ 버전부터는 i18next.services.resourceStore.data 에 저장됩니다.
+
+		// 2) 현재 언어(i18next.language)와 네임스페이스들을 순회하면서
+		//    모든 키를 모아 플래트닝(flatten)합니다.
+		function getAllKeys() {
+			const resourceStore = i18next.services.resourceStore.data;
+			const lang = i18next.language;
+			const namespaces = Object.keys(resourceStore[lang] || {});
+			const keys = [];
+
+			namespaces.forEach(ns => {
+				const bundle = resourceStore[lang][ns];
+				// bundle 이 중첩 객체면 재귀로 키를 뽑아야 합니다:
+				function recurse(obj, prefix = '') {
+				Object.entries(obj).forEach(([k, v]) => {
+					const path = prefix ? `${prefix}.${k}` : k;
+					if (typeof v === 'string') {
+					keys.push(path);
+					} else if (typeof v === 'object') {
+					recurse(v, path);
+					}
+				});
+				}
+				recurse(bundle);
+			});
+
+			// 중복 제거
+			return Array.from(new Set(keys));
+		}
+
+		// 3) 특수문자 이스케이프 헬퍼
+		function escapeRegExp(str) {
+			return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		}
+		// 4) 모듈 로딩 시 단 한 번 RegExp 빌드
+		const allKeys = getAllKeys().sort((a, b) => b.length - a.length);
+		const pattern = new RegExp(allKeys.map(escapeRegExp).join('|'), 'g');
+
+		// 5) 텍스트 인라인 번역 함수
+		function translateInline(text) {
+			return text.replace(pattern, key => i18next.t(key));
+		}
+
 		var result = findDamageResult($(this));
 		if (result) {
-			var desc = result.fullDesc(notation, false);
-			if (desc.indexOf('--') === -1) desc += ' -- possibly the worst move ever';
+			var desc = translateInline(result.fullDesc(notation, false));
+			if (desc.indexOf('--') === -1) desc += ' -- 최악의 결과가 예상됨';
 			$("#mainResult").text(desc);
 			var summary = displayDamageHits(result.damage);
 			var rest = "";

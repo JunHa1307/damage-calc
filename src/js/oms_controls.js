@@ -323,8 +323,8 @@ function performCalculationsOM() {
 	}
 	bestResult.prop("checked", true);
 	bestResult.change();
-	$("#resultHeaderL").text(p1.name + "'s Moves (select one to show detailed results)");
-	$("#resultHeaderR").text(p2.name + "'s Moves (select one to show detailed results)");
+	$("#resultHeaderL").text(i18next.t(p1.name) + "의 기술 (선택하시면 결과를 계산합니다)");
+	$("#resultHeaderR").text(i18next.t(p2.name) + "의 기술 (선택하시면 결과를 계산합니다)");
 }
 
 $("#p1 .item").bind("keyup change", function () {
