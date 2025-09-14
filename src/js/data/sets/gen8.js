@@ -354,7 +354,8 @@ var SETDEX_SS = {
   },
   "Farfetch’d-Galar": {
     "LC Choice Scarf": {"level":5,"ability":"Scrappy","item":"Choice Scarf","nature":"Jolly","evs":{"hp":20,"at":236,"sp":236},"moves":["Close Combat","Brave Bird","Final Gambit","Knock Off"]},
-    "LC Life Orb": {"level":5,"ability":"Scrappy","item":"Life Orb","nature":"Jolly","evs":{"hp":20,"at":236,"sp":236},"moves":["Close Combat","Knock Off","Brave Bird","Quick Attack"]}
+    "LC Life Orb": {"level":5,"ability":"Scrappy","item":"Life Orb","nature":"Jolly","evs":{"hp":20,"at":236,"sp":236},"moves":["Close Combat","Knock Off","Brave Bird","Quick Attack"]},
+    "NFE Swords Dance": {"ability":"Scrappy","item":"Eviolite","nature":"Adamant","evs":{"at":252,"sd":4,"sp":252},"moves":["Close Combat","Knock Off","Swords Dance","Final Gambit"]}
   },
   "Muk-Alola": {
     "National Dex Monotype Pain Split (Poison)": {"ability":"Poison Touch","item":"Black Sludge","nature":"Careful","evs":{"hp":252,"at":20,"df":12,"sd":224},"moves":["Pain Split","Protect","Pursuit","Knock Off"]},
@@ -583,8 +584,7 @@ var SETDEX_SS = {
   },
   "Omanyte": {
     "LC Shell Smash Sweeper": {"level":5,"ability":"Shell Armor","item":"Eviolite","nature":"Modest","evs":{"hp":76,"sa":196,"sp":236},"moves":["Shell Smash","Hydro Pump","Ice Beam","Earth Power"]},
-    "LC Entry Hazard Setter": {"level":5,"ability":"Weak Armor","item":"Eviolite","nature":"Modest","ivs":{"at":0},"evs":{"hp":76,"df":116,"sa":116,"sp":156},"moves":["Stealth Rock","Surf","Earth Power","Ice Beam"]},
-    "NFE Shell Smash": {"ability":"Shell Armor","item":"Eviolite","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"moves":["Shell Smash","Surf","Ice Beam","Earth Power"]}
+    "LC Entry Hazard Setter": {"level":5,"ability":"Weak Armor","item":"Eviolite","nature":"Modest","ivs":{"at":0},"evs":{"hp":76,"df":116,"sa":116,"sp":156},"moves":["Stealth Rock","Surf","Earth Power","Ice Beam"]}
   },
   "Omastar": {
     "NU Shell Smash Sweeper": {"ability":"Weak Armor","item":"Power Herb","nature":"Timid","evs":{"df":4,"sa":252,"sp":252},"moves":["Shell Smash","Meteor Beam","Surf","Ice Beam"]},
@@ -1604,9 +1604,7 @@ var SETDEX_SS = {
     "National Dex Monotype Swords Dance (Ground)": {"ability":"Sand Force","item":"Garchompite","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Swords Dance","Earthquake","Fire Fang","Scale Shot"]}
   },
   "Munchlax": {
-    "LC Defensive": {"level":5,"ability":"Thick Fat","item":"Berry Juice","nature":"Adamant","evs":{"at":236,"df":36,"sd":236},"moves":["Curse","Body Slam","Fire Punch","Recycle"]},
-    "NFE RestTalk": {"ability":"Thick Fat","item":"Eviolite","nature":"Careful","evs":{"at":4,"df":252,"sd":252},"moves":["Rest","Sleep Talk","Body Slam","Whirlwind"]},
-    "NFE Curse": {"ability":"Thick Fat","item":"Eviolite","nature":"Impish","evs":{"at":4,"df":252,"sd":252},"moves":["Body Slam","Curse","Rest","Sleep Talk"]}
+    "LC Defensive": {"level":5,"ability":"Thick Fat","item":"Berry Juice","nature":"Adamant","evs":{"at":236,"df":36,"sd":236},"moves":["Curse","Body Slam","Fire Punch","Recycle"]}
   },
   "Lucario": {
     "RU Swords Dance": {"ability":"Inner Focus","item":"Life Orb","nature":"Jolly","evs":{"at":252,"sd":4,"sp":252},"moves":["Close Combat","Meteor Mash","Swords Dance","Extreme Speed"]},
@@ -2248,7 +2246,7 @@ var SETDEX_SS = {
     "PU Defensive Utility": {"ability":"Cursed Body","item":"Colbur Berry","nature":"Bold","evs":{"hp":252,"df":180,"sp":76},"moves":["Recover","Taunt","Will-O-Wisp","Hex"]},
     "PU Special Wallbreaker": {"ability":"Water Absorb","item":"Choice Specs","nature":"Modest","evs":{"sa":252,"sd":4,"sp":252},"moves":["Water Spout","Shadow Ball","Trick","Surf"]},
     "Monotype Physically Defensive Wall (Ghost)": {"ability":"Water Absorb","item":"Leftovers","nature":"Bold","evs":{"hp":252,"df":252,"sp":4},"moves":["Scald","Taunt","Strength Sap","Will-O-Wisp"]},
-    "1v1 Maranga Berry": {"ability":"Cursed Body","item":"Maranga Berry","nature":"Careful","evs":{"hp":252,"df":80,"sd":96,"sp":80},"moves":["Scald","Strength Sap","Taunt","Recover"]},
+    "1v1 Maranga Berry": {"ability":"Cursed Body","item":"Maranga Berry","nature":"Calm","evs":{"hp":252,"df":80,"sd":96,"sp":80},"moves":["Scald","Strength Sap","Taunt","Recover"]},
     "1v1 Choice Scarf": {"ability":"Cursed Body","item":"Choice Scarf","nature":"Timid","evs":{"sa":252,"sd":4,"sp":252},"moves":["Trick","Recover","Hydro Pump","Shadow Ball"]}
   },
   "Alomomola": {
@@ -4093,7 +4091,8 @@ var SETDEX_SS = {
     "1v1 Sitrus Berry + Disable": {"ability":"Grim Neigh","item":"Sitrus Berry","nature":"Timid","evs":{"hp":240,"sd":16,"sp":252},"moves":["Calm Mind","Shadow Ball","Disable","Will-O-Wisp"]},
     "1v1 Choice Specs": {"ability":"Grim Neigh","item":"Choice Specs","nature":"Modest","evs":{"hp":120,"sa":172,"sd":84,"sp":132},"moves":["Shadow Ball","Hyper Beam","Mud Shot","Uproar"]},
     "1v1 Weakness Policy": {"ability":"Grim Neigh","item":"Weakness Policy","nature":"Timid","evs":{"hp":168,"df":208,"sa":44,"sp":88},"moves":["Calm Mind","Will-O-Wisp","Hex","Mud Shot"]},
-    "1v1 Life Orb": {"ability":"Grim Neigh","item":"Life Orb","nature":"Modest","evs":{"hp":12,"df":140,"sa":104,"sp":252},"moves":["Calm Mind","Will-O-Wisp","Hyper Beam","Hex"]}
+    "1v1 Life Orb": {"ability":"Grim Neigh","item":"Life Orb","nature":"Modest","evs":{"hp":12,"df":160,"sa":84,"sp":252},"moves":["Hex","Hyper Beam","Will-O-Wisp","Calm Mind"]},
+    "1v1 Rocky Helmet": {"ability":"Grim Neigh","item":"Rocky Helmet","nature":"Modest","ivs":{"at":0},"evs":{"hp":96,"df":248,"sa":12,"sp":152},"moves":["Hex","Mud Shot","Will-O-Wisp","Taunt"]}
   },
   "Calyrex": {
     "ZU Double Dance": {"ability":"Unnerve","item":"Weakness Policy","nature":"Modest","ivs":{"at":0},"evs":{"df":4,"sa":252,"sp":252},"moves":["Agility","Calm Mind","Giga Drain","Stored Power"]}
